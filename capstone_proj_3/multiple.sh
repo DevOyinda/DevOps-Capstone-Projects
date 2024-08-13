@@ -36,7 +36,7 @@ if [ "$table" = "p" ]; then
 		
 		
 		#Print full multiplication table of the initial number entered
-		# using list loop
+		# using list form for loop
 		for i in {1..10}; do
 			echo "$num x $i = $((num * i))"
                 done
@@ -55,13 +55,26 @@ if [ "$table" = "p" ]; then
 
 
 # Step 6: Check if user chose full table
-elif [ "$table" = "f" ]; then 
+elif [ "$table" = "f" ]; then
+
+	# Bonus step: ask if user wants ascending or descending order after selecting f
+	read -p "Do you want the table in ascending or descending order? (Enter 'a' for ascending, 'd' for descending): " order
 	echo "The multiplication table for $num:"
 
-	#Print full multiplication table of the initial number entered
-	for i in {1..10}; do
-		echo "$num x $i = $((num * i))"
-	done
+	if [ "$order" = "a" ]; then
+
+	#Print full multiplication table of the initial number entered in ascending order
+	#using list form for loop
+		for i in {1..10}; do
+			echo "$num x $i = $((num * i))"
+		done
+	else
+		#prints multiplication table in descending order
+		for ((i=10; i>=1; i--)); do
+			echo "$num x $i = $((num * i))"
+		done
+	fi
+
 
 # To handle invalid input for table choice
 else 
