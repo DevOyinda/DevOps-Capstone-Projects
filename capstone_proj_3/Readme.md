@@ -3,7 +3,7 @@
 ## The objective of this project is to create a Bash script that generates a multiplication table for a number entered by the user. 
 ## In this project I practiced using loops (C-style and list loop forms), applied conditional logics and handling user inputs in Bash scripting.
 
-## Project Decsription: My script should prompt a user to enter a number and then ask if they prefer to see a full multiplication table from 1 to 10 or a partial table within a specified range. Based on the user's choive, the script will display the corresponding multiplication table.
+## Project Decsription: My script should prompt a user to enter a number and then ask if they prefer to see a full multiplication table from 1 to 10 or a partial table within a specified range. Based on the user's choice, the script will display the corresponding multiplication table.
 
 ### STEP 1: Creating a .sh file
 
