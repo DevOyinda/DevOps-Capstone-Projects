@@ -358,15 +358,15 @@ It still appeared that I was unable to establish a connection.
 sudo yum update -y
 sudo yum intall httpd -y
 sudo systemctl start httpd
-sudo sytemctl enable httpd
+sudo systemctl enable httpd
 ```
-* Created an `index.html` file in a `Test` directory. Configured httpd to point to the directory on the linux server where the file is stored. Reloaded httpd when chnages have been appplied.
+* Created an `index.html` file in a `Test` directory. Configured httpd to point to the directory on the linux server where the file is stored. Reloaded httpd when changes have been appplied.
 
 It's usually in /var/www/html. This directory is a standard directory structure on Linux systems that host web content, particularly for Apache HTTP Server. Thus directory is automatically created when Apache is installed on the system.
 
 ```bash
 sudo rm -rf /var/www/html/*
-sudo cp -r ~/MarketPeak_Ecommerce/* /var/www/html/
+sudo cp -r ~/Test/* /var/www/html/
 sudo systemctl reload httpd
 ```
 ![](./images/78.%20create%20html.png)
@@ -375,6 +375,21 @@ sudo systemctl reload httpd
 
 ![](./images/79.%20bastion%20healthy.png)
 
+### For WordPress Instance
+* I connected to the private EC2 instance using bastion-host server as the jump server. I created an `index.html` file in a `Test2` directory sopied the contents of the Directory into the standard `/var/www/html` directory.
 
+![](./80.%20created%20Test%202%20folder.png)
+
+```bash
+sudo cp -r ~/Test2/* /var/www/html/
+sudo systemctl reload httpd
+```
+![](./81.%20moved%20the%20file%20to%20httpd%20standard%20directory.png)
+
+* Checked my registered targets and the WordPress instance became healthy too.
+Both Instances are healthy
+![](./82.%20Instance%20now%20healthy.png)
+
+NOTE: From troubleshooting, a new html file has to be created and copied to the standard httpd directory `/var/www/html`
 
 ### Auto Scaling
