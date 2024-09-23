@@ -1,3 +1,2 @@
 # DevOps-Capstone-Projects
-This is my capstone project for darey.io DevOps bootcamps, For project 3.
-Linux Shell Scripting.
+This entails all DevOps capstone projects I've worked on at darey.io bootcamp.
