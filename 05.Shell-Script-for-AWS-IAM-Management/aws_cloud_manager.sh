@@ -1,11 +1,8 @@
 #!/bin/bash
 
-# IAM Onboarding Script
 # This script onboards 5 employees by creating IAM users, an admin group,
-# and assigns administrative privileges to the users.
+# and assigns administrative privileges to the users and ensures the AWS CLI is installed
 
-
-# Ensure the AWS CLI is installed
 if ! command -v aws &> /dev/null
 then
 	echo "AWS CLI could not be found. Please install it first."
