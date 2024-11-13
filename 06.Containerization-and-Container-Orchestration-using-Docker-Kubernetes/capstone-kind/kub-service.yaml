@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: signup-page-service
+spec:
+  selector:
+    app: signup-page
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: signup-page
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: signup-page
+  template:
+    metadata:
+      labels:
+        app: signup-page
+    spec:
+      containers:
+      - name: signup-page-container
+        image: devoyinda/capstone_proj_6_doc_and_kub:1.0
+        ports:
+        - containerPort: 80
