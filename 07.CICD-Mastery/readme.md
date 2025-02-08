@@ -1,1 +1,1 @@
-capstone project 7
+capstone project 7- AUTOMATING DEPLOYMENT OF AN E-COMMERCE WEBSITE
