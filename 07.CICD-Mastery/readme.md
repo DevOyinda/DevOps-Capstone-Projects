@@ -250,7 +250,11 @@ SUCCESSFUL BUILD
 ![](./images/28.%20website%20access%20on%20port%208081.png)
 
 
-## TROUBLESHOOTING ISSUES - Failed automated tests blocking the pipeline
+
+
+
+
+# TROUBLESHOOTING ISSUES - Failed automated tests blocking the pipeline
 In this project, I frequently encountered build failures in Jenkins whenever I made changes to my GitHub repository. The error indicated that a container was already running, requiring me to either stop it manually or assign the new container to a different port. As a result, I had to constantly modify security groups, stop existing containers, or even delete them to allow a new one to run.
 
 Beyond Continuous Integration, Jenkins also excels in automation, streamlining the testing process to minimize manual effort and ensure software quality.
