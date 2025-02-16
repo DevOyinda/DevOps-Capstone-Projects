@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+    
+     environment {
+        DOCKER_IMAGE = 'devoyinda/cicd-mastery-capstone-project-7' // Replace with your Docker Hub image name
+        DOCKER_TAG = '3.0' // Replace with your desired tag
+        DOCKER_CREDENTIALS = 'dockerhub_credentials' // Replace with the ID of your Jenkins credentials
+        DOCKER_USERNAME = 'devoyinda'
+        DOCKER_PASSWORD = credentials('dockerhub_credentials') // Credentials ID
+    }
+    
+    
+    stages {
+        stage('Connect To Github') {
+            steps {
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/DevOyinda/DevOps-Capstone-Projects.git']])
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                    // Navigate to the directory containing the Dockerfile
+                    dir('07.CICD-Mastery') {
+                        script {
+                        // Build the Docker image
+                        docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
+                    }    
+                }
+            }
+        }
+        stage('Push Docker Image to Docker Hub') {
+            steps {
+                script {
+                    // Push the Docker image to Docker Hub
+                    docker.withRegistry('https://registry.hub.docker.com', ("${DOCKER_CREDENTIALS}")) {
+                        docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push()
+                    }
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                     // Check if port 8081 is in use
+                    def isPortInUse = sh(script: "docker ps --filter 'publish=8081' --format '{{.ID}}'", returnStdout: true).trim()
+
+                    if (isPortInUse) {
+                        // Stop and remove the existing container using port 8081
+                        sh "docker stop ${isPortInUse}"
+                        sh "docker rm ${isPortInUse}"
+                    }
+                     // Run a new container using the built image
+                    sh 'docker run -itd -p 8081:80 devoyinda/cicd-mastery-capstone-project-7:3.0'
+                }
+            }
+        }
+    }
+}
